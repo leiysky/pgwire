@@ -103,7 +103,7 @@ async fn process_message<S, A, Q, EQ>(
 where
     S: AsyncRead + AsyncWrite + Unpin + Send + Sync,
     A: StartupHandler + 'static,
-    Q: SimpleQueryHandler + 'static,
+    Q: SimpleQueryHandler,
     EQ: ExtendedQueryHandler + 'static,
 {
     match socket.codec().client_info.state() {
@@ -244,7 +244,7 @@ pub async fn process_socket<A, Q, EQ>(
 ) -> Result<(), IOError>
 where
     A: StartupHandler + 'static,
-    Q: SimpleQueryHandler + 'static,
+    Q: SimpleQueryHandler,
     EQ: ExtendedQueryHandler + 'static,
 {
     let addr = tcp_socket.peer_addr()?;
